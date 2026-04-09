@@ -146,7 +146,7 @@ Transform:
   m_GameObject: {fileID: 266384534}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.16, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -199,7 +199,7 @@ TilemapRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -2976,8 +2976,8 @@ Transform:
   m_GameObject: {fileID: 1210951735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.78, y: 1, z: 0}
-  m_LocalScale: {x: 6, y: 3, z: 1}
+  m_LocalPosition: {x: 22.61, y: 0.6, z: 0}
+  m_LocalScale: {x: 7, y: 3.4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2993,10 +2993,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae63050114526e589ec26b42c5d1089, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pralax
+  m_EditorClassIdentifier: Assembly-CSharp::Parallax
   parallaxEffect: 0.4
-  rightKey: 100
-  leftKey: 97
 --- !u!1 &1440017366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3100,10 +3098,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ae63050114526e589ec26b42c5d1089, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::Parallax
   parallaxEffect: 0.4
-  rightKey: 100
-  leftKey: 97
 --- !u!1 &1525452142
 GameObject:
   m_ObjectHideFlags: 0

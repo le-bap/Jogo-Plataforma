@@ -864,10 +864,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "REGRAS:\n1. Use os bot\xF5es WASD para movimentar o jogador\n2. Siga o
-    caminho e n\xE3o deixe os capangas dos Vil\xF5es te \nmachucarem, pois voc\xEA
-    tem apenas 3 vidas\n3. Recolha todos as pedras preciosas para vencer. Elas te
-    dar\xE3o\n for\xE7a para derrotar Os Vil\xF5es\n\nBoa sorte..."
+  m_text: "REGRAS:\n1. Use os bot\xF5es WAS para movimentar o jogador e\nEspa\xE7o
+    para pular\n2. Siga o caminho e n\xE3o deixe os capangas dos Vil\xF5es te \nmachucarem,
+    pois voc\xEA tem apenas 3 vidas\n3. Recolha todos as pedras preciosas para vencer.
+    Elas te dar\xE3o\n for\xE7a para derrotar Os Vil\xF5es\n\nBoa sorte..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -984,7 +984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.7, y: -215.6}
+  m_AnchoredPosition: {x: 127, y: -229}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014669575
@@ -1008,7 +1008,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.10196078, g: 0.93333334, b: 0.30740553, a: 1}
+    m_NormalColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
