@@ -1,86 +1,101 @@
 using UnityEngine;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
     public float speed = 5f;
     public float jumpForce = 10f;
 
-    public KeyCode leftKey = KeyCode.A;
-    public KeyCode rightKey = KeyCode.D;
-    public KeyCode jumpKey = KeyCode.Space;
-
     private Rigidbody2D rb;
-    private Animator animator;
 
     private bool isGrounded;
+    private bool onLadder;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        float move = 0;
+        float move = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(leftKey))
-            move = -1;
-
-        if (Input.GetKey(rightKey))
-            move = 1;
-
-        rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
-
-        if (Input.GetKeyDown(jumpKey) && isGrounded)
+        if (onLadder)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(move * speed, vertical * speed);
         }
-
-       if (Input.GetKeyDown(KeyCode.S))
+        else
         {
-            StartCoroutine(DropDown());
+            rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            }
         }
-
-        if (move > 0)
-            transform.localScale = new Vector3(1, 1, 1);
-        else if (move < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-
-        
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    // chão
+    void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
+        if (col.gameObject.CompareTag("Ground"))
             isGrounded = true;
-        }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D col)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
+        if (col.gameObject.CompareTag("Ground"))
             isGrounded = false;
+    }
+
+    // escada
+    void SetLayerCollision(string layerName, bool ignore)
+    {
+        Physics2D.IgnoreLayerCollision(
+            gameObject.layer,
+            LayerMask.NameToLayer(layerName),
+            ignore
+        );
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Ladder"))
+        {
+            onLadder = true;
+            rb.gravityScale = 0;
+
+            // 👇 permite atravessar ambos enquanto está na escada
+            SetLayerCollision("GroundTop", true);
+            SetLayerCollision("GroundBottom", true);
         }
     }
 
-    IEnumerator DropDown()
+    void OnTriggerExit2D(Collider2D col)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
-
-        if (hit.collider != null && hit.collider.CompareTag("Ground"))
+        if (col.CompareTag("Ladder"))
         {
-            Collider2D playerCol = GetComponent<Collider2D>();
-            Collider2D platformCol = hit.collider;
+            onLadder = false;
+            rb.gravityScale = 1;
 
-            Physics2D.IgnoreCollision(playerCol, platformCol, true);
+            // 👇 detecta em qual chão você está
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
 
-            yield return new WaitForSeconds(0.3f);
-
-            Physics2D.IgnoreCollision(playerCol, platformCol, false);
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("GroundBottom"))
+                {
+                    // ativa só o de baixo
+                    SetLayerCollision("GroundBottom", false);
+                    SetLayerCollision("GroundTop", true);
+                }
+                else
+                {
+                    // ativa só o de cima
+                    SetLayerCollision("GroundTop", false);
+                    SetLayerCollision("GroundBottom", true);
+                }
+            }
         }
     }
 }
