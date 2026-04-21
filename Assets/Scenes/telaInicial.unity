@@ -841,7 +841,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 216.98, y: -102.71}
+  m_AnchoredPosition: {x: 176, y: -102.71}
   m_SizeDelta: {x: 625.2864, y: 205.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1898912121
@@ -864,8 +864,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "REGRAS:\n1. Use os bot\xF5es WAS para movimentar o jogador e\nEspa\xE7o
-    para pular\n2. Siga o caminho e n\xE3o deixe os capangas dos Vil\xF5es te \nmachucarem,
+  m_text: "REGRAS:\n1. Use os bot\xF5es WASD para movimentar o jogador e\nEspa\xE7o
+    para pular\n2. Siga o caminho e n\xE3o deixe os cobras dos Vil\xF5es te \nmachucarem,
     pois voc\xEA tem apenas 3 vidas\n3. Recolha todos as pedras preciosas para vencer.
     Elas te dar\xE3o\n for\xE7a para derrotar Os Vil\xF5es\n\nBoa sorte..."
   m_isRightToLeft: 0
@@ -1127,7 +1127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -248.59935, y: 100}
+  m_AnchoredPosition: {x: -220, y: 94}
   m_SizeDelta: {x: 397.1987, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2020584824
@@ -1177,8 +1177,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
