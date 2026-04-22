@@ -70,6 +70,24 @@ public class Player : MonoBehaviour
             SetLayerCollision("GroundBottom", true);
         }
     }
+    public int lives = 3;
+
+    public void TakeDamage(int damage)
+    {
+        lives -= damage;
+        Debug.Log("Tomou dano! Vidas restantes: " + lives);
+
+        if (lives <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("Player morreu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Derrota");
+    }
 
     void OnTriggerExit2D(Collider2D col)
     {
