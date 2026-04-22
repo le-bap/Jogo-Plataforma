@@ -1,18 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movimento")]
     public float speed = 5f;
     public float jumpForce = 10f;
 
-    private Rigidbody2D rb;
+    [Header("Vidas")]
+    public int lives = 3;
+    public TMP_Text livesText;
+    public float invulnerableTime = 1f;
 
+    private Rigidbody2D rb;
     private bool isGrounded;
     private bool onLadder;
+    private bool isInvulnerable = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        UpdateLivesUI();
     }
 
     void Update()
@@ -33,6 +43,47 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isInvulnerable) return;
+
+        lives -= damage;
+
+        if (lives < 0)
+            lives = 0;
+
+        Debug.Log("Tomou dano! Vidas restantes: " + lives);
+        UpdateLivesUI();
+
+        if (lives <= 0)
+        {
+            Die();
+            return;
+        }
+
+        StartCoroutine(InvulnerabilityCoroutine());
+    }
+
+    void UpdateLivesUI()
+    {
+        if (livesText != null)
+        {
+            livesText.text = "Vidas: " + lives;
+        }
+    }
+
+    void Die()
+    {
+        SceneManager.LoadScene("tela derrota");
+    }
+
+    IEnumerator InvulnerabilityCoroutine()
+    {
+        isInvulnerable = true;
+        yield return new WaitForSeconds(invulnerableTime);
+        isInvulnerable = false;
     }
 
     // chão
@@ -65,28 +116,9 @@ public class Player : MonoBehaviour
             onLadder = true;
             rb.gravityScale = 0;
 
-            // 👇 permite atravessar ambos enquanto está na escada
             SetLayerCollision("GroundTop", true);
             SetLayerCollision("GroundBottom", true);
         }
-    }
-    public int lives = 3;
-
-    public void TakeDamage(int damage)
-    {
-        lives -= damage;
-        Debug.Log("Tomou dano! Vidas restantes: " + lives);
-
-        if (lives <= 0)
-        {
-            Die();
-        }
-    }
-
-    void Die()
-    {
-        Debug.Log("Player morreu");
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Derrota");
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -96,20 +128,17 @@ public class Player : MonoBehaviour
             onLadder = false;
             rb.gravityScale = 1;
 
-            // 👇 detecta em qual chão você está
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
 
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("GroundBottom"))
                 {
-                    // ativa só o de baixo
                     SetLayerCollision("GroundBottom", false);
                     SetLayerCollision("GroundTop", true);
                 }
                 else
                 {
-                    // ativa só o de cima
                     SetLayerCollision("GroundTop", false);
                     SetLayerCollision("GroundBottom", true);
                 }

@@ -7,10 +7,22 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/fase1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    guid: d0eba42df8013acb8aa44ae047c30c89
   - enabled: 1
     path: Assets/Scenes/telaInicial.unity
     guid: 6a1c0192b2924cb429383a446f4f3bec
+  - enabled: 0
+    path: Assets/Scenes/fase2-teste.unity
+    guid: f9ef2e56b90e302eabc72b624504e81d
+  - enabled: 1
+    path: Assets/Scenes/fase2.unity
+    guid: 243ae8ad18ad4a0079185822f032088a
+  - enabled: 1
+    path: Assets/Scenes/tela vitoria.unity
+    guid: 24429095087042d1d95a7ca7c43be67e
+  - enabled: 1
+    path: Assets/Scenes/tela derrota.unity
+    guid: 21bd0e743a901364bb46cf8542797762
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
